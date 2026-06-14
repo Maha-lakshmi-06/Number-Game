@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Number</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, aliceblue, lightcoral, aliceblue);
+            height: 100vh;
+        }
+
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+
+        .main div.sub {
+            display: flex;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 450px;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(242, 182, 182);
+            position: absolute;
+            top: 150px;
+            border: 3px solid black;
+            border-radius: 30px;
+            transition: width 0.5s, height 0.5s, border 1s, border-radius 0.5s, background-color 1.5s;
+        }
+
+        div.sub:hover {
+            width: 520px;
+            height: 470px;
+            border-color: brown;
+            border-radius: 50px;
+            background-color: rgb(240, 151, 151);
+            box-shadow: 0px 0px 20px rgb(248, 245, 245);
+        }
+
+        h1 {
+            padding: 30px;
+            font-size: 45px;
+            color: rgb(102, 7, 7);
+            text-shadow: 1px 1px 5px rgb(121, 120, 120), 1px 1px 3px rgb(248, 245, 245);
+        }
+
+        .main .sub h2 {
+            padding: 20px;
+            font-size: 32px;
+            color: rgb(72, 0, 0);
+            text-shadow: 0px 0px 2px white;
+        }
+
+        input {
+            padding: 20px;
+            border: 3px solid rgb(7, 0, 0);
+            border-radius: 5px;
+            transition: padding 0.5s, border-radius 0.5s, background-color 0.5s, box-shadow 0.5s;
+            color: rgb(32, 3, 94);
+            background-color: rgb(247, 234, 234);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        input:hover {
+            padding: 22px;
+            border-radius: 15px;
+            border-color: brown;
+            background-color: rgb(240, 210, 210);
+            box-shadow: 1px 1px 8px white;
+        }
+
+        button {
+            padding: 21px;
+            border: 3px solid rgb(7, 0, 0);
+            border-radius: 5px;
+            transition: padding 0.5s, border-radius 0.5s, background-color 0.5s, box-shadow 0.5s, font 0.5s;
+            color: brown;
+            background-color: rgb(247, 234, 234);
+            cursor: pointer;
+            margin-left: 7px;
+            font-size: 20px;
+        }
+
+        button:hover {
+            padding: 22px;
+            border-radius: 15px;
+            border-color: brown;
+            background-color: rgb(240, 210, 210);
+            box-shadow: 1px 1px 8px white;
+            color: brown;
+            font-weight: bold;
+        }
+
+        .main .sub h4 {
+            font-size: 30px;
+            color: rgb(83, 1, 1);
+            text-shadow: 1.5px 1px 2px rgb(254, 251, 251);
+        }
+
+        .main .sub p {
+            color: rgb(244, 242, 242);
+            padding: 20px;
+            font-size: 25px;
+            text-shadow: 1px 0px 2px black, 0px 1px 2px rgb(84, 3, 3);
+            transition: color 1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>NUMBER GAME </h1>
+        <div class="sub">
+            <h2>Enter Number Between 1 to 10</h2>
+            <input id="number" placeholder="Enter any number">
+            <button onclick="checknumber()">CHECK</button>
+            <h4 id="resultt">ARE YOU LUCKY?</h4>
+            <p id="score">SCORE:10</p>
+        </div>
+    </div>
+    <script>
+        let getnumber = document.getElementById("number")//select input
+        let randomnnumber = Math.floor(Math.random() * 10) + 1   //create a random number
+        let result = document.getElementById("resultt")   //selecting result
+        let score = document.getElementById("score")
+        let totalscore = 10
+        function checknumber() {
+            let enterednumber = Number(getnumber.value)  //takes     value of the input tag
+            if (randomnnumber == enterednumber) {
+                result.textContent = "YES! YOU ARE LUCKY."
+                result.style.color = "white"
+                result.style.textShadow = "0px 0px 3px brown"
+                score.textContent = "Score: " + totalscore
+
+            }
+            else {
+
+                totalscore = totalscore - 1
+
+                if (totalscore === 0) {
+                    result.textContent = "💀 GAME OVER!"
+                    result.style.color = "black"
+                    score.textContent = "Score: 0"
+                } else {
+                    result.textContent = "Sorry! You Are Wrong"
+                    score.textContent = "Score: " + totalscore
+                }
+
+                getnumber.value = ""
+            }
+
+
+            console.log(randomnnumber)
+        }
+    </script>
+</body>
+
+</html>
